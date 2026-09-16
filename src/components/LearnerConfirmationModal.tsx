@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { X, Award, Printer, ShieldCheck, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Award, Printer, ShieldCheck, Sparkles, Cloud, Check, LogIn } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { SupportedLanguage } from '../types';
+import { useFirebase } from '../firebase/context';
 
 interface LearnerConfirmationModalProps {
   isOpen: boolean;
@@ -19,21 +20,48 @@ export const LearnerConfirmationModal: React.FC<LearnerConfirmationModalProps> =
   totalSteps,
   confirmedCount,
 }) => {
-  const [learnerName, setLearnerName] = useState('');
+  const { user, saveCertificate, signInWithGoogle } = useFirebase();
+  const [learnerName, setLearnerName] = useState(user?.displayName || '');
   const [organization, setOrganization] = useState('');
   const [hasAgreed, setHasAgreed] = useState(false);
   const [certificateIssued, setCertificateIssued] = useState(false);
   const [certId, setCertId] = useState('');
+  const [isSavedToCloud, setIsSavedToCloud] = useState(false);
+
+  useEffect(() => {
+    if (user?.displayName && !learnerName) {
+      setLearnerName(user.displayName);
+    }
+  }, [user]);
 
   if (!isOpen) return null;
 
-  const handleIssueCertificate = (e: React.FormEvent) => {
+  const handleIssueCertificate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!learnerName.trim() || !hasAgreed) return;
 
-    const newId = `HN-${Math.floor(100000 + Math.random() * 900000)}-${new Date().getFullYear()}`;
+    const newId = `LS-${Math.floor(100000 + Math.random() * 900000)}-${new Date().getFullYear()}`;
     setCertId(newId);
     setCertificateIssued(true);
+
+    // Save to Firestore if user authenticated
+    if (user) {
+      try {
+        await saveCertificate({
+          certificateId: newId,
+          learnerName: learnerName.trim(),
+          learnerEmail: user.email || undefined,
+          programTitle,
+          verificationCode: newId,
+          status: 'verified',
+          hoursCompleted: totalSteps,
+          score: 100,
+        });
+        setIsSavedToCloud(true);
+      } catch (err) {
+        console.error('Failed to auto-save certificate to Firestore:', err);
+      }
+    }
 
     try {
       confetti({
@@ -44,6 +72,29 @@ export const LearnerConfirmationModal: React.FC<LearnerConfirmationModalProps> =
       });
     } catch (err) {
       console.warn('Confetti unavailable', err);
+    }
+  };
+
+  const handleSaveToCloudNow = async () => {
+    if (!user) {
+      await signInWithGoogle();
+    }
+    if (certId) {
+      try {
+        await saveCertificate({
+          certificateId: certId,
+          learnerName: learnerName.trim(),
+          learnerEmail: user?.email || undefined,
+          programTitle,
+          verificationCode: certId,
+          status: 'verified',
+          hoursCompleted: totalSteps,
+          score: 100,
+        });
+        setIsSavedToCloud(true);
+      } catch (err) {
+        console.error('Failed to save to cloud:', err);
+      }
     }
   };
 
@@ -198,6 +249,34 @@ export const LearnerConfirmationModal: React.FC<LearnerConfirmationModalProps> =
                     <span className="text-[10px] text-[#E07A5F] font-semibold block">AoN & Cambridge Accredited</span>
                   </div>
                 </div>
+              </div>
+
+              {/* Cloud Sync Status / Action */}
+              <div className="bg-[#B7E4C7]/20 border border-[#B7E4C7] rounded-xl p-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Cloud className="w-4 h-4 text-[#1B4332]" />
+                  <span className="text-xs text-[#1B4332] font-semibold">
+                    {isSavedToCloud
+                      ? 'Stored securely in your Learnova Services Firebase Cloud Profile'
+                      : user
+                      ? 'Ready to sync to your Firebase cloud account'
+                      : 'Sign in to save this credential to your persistent Learner Cloud account'}
+                  </span>
+                </div>
+                {isSavedToCloud ? (
+                  <span className="px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-xs font-bold flex items-center gap-1">
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Saved in Cloud</span>
+                  </span>
+                ) : (
+                  <button
+                    onClick={handleSaveToCloudNow}
+                    className="px-3 py-1.5 rounded-lg bg-[#1B4332] hover:bg-[#143326] text-white text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
+                  >
+                    <Cloud className="w-3.5 h-3.5 text-[#B7E4C7]" />
+                    <span>{user ? 'Save to Cloud' : 'Sign in & Save'}</span>
+                  </button>
+                )}
               </div>
 
               <div className="flex items-center justify-between gap-3">

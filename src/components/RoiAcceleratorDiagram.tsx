@@ -13,9 +13,11 @@ import {
   ShieldCheck,
   BarChart3,
   Flame,
+  Send,
 } from 'lucide-react';
 import { speechService } from '../utils/speechSynthesis';
 import { SupportedLanguage } from '../types';
+import { CorporateInquiryModal } from './CorporateInquiryModal';
 
 interface RoiAcceleratorProps {
   language: SupportedLanguage;
@@ -25,6 +27,7 @@ export const RoiAcceleratorDiagram: React.FC<RoiAcceleratorProps> = ({ language 
   const [activeStage, setActiveStage] = useState<number | null>(null);
   const [learnersCount, setLearnersCount] = useState<number>(120);
   const [avgTrainingCost, setAvgTrainingCost] = useState<number>(450);
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
 
   const stages = [
     {
@@ -338,9 +341,26 @@ export const RoiAcceleratorDiagram: React.FC<RoiAcceleratorProps> = ({ language 
               <span className="text-xs font-bold text-[#1B4332]">Net Organizational Gain:</span>
               <span className="font-mono font-extrabold text-[#E07A5F] text-base">+${Math.round(netSavings).toLocaleString()}</span>
             </div>
+
+            <button
+              onClick={() => setIsInquiryModalOpen(true)}
+              className="mt-3 w-full py-2.5 px-3 rounded-xl bg-[#E07A5F] hover:bg-[#C9664D] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition cursor-pointer"
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>Book 48h PoC & Save Proposal</span>
+            </button>
           </div>
         </div>
       </div>
+
+      <CorporateInquiryModal
+        isOpen={isInquiryModalOpen}
+        onClose={() => setIsInquiryModalOpen(false)}
+        learnersCount={learnersCount}
+        avgTrainingCost={avgTrainingCost}
+        netSavings={netSavings}
+        projectedValue={projectedValueReturn}
+      />
     </section>
   );
 };

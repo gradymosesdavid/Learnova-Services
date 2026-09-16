@@ -1,0 +1,253 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Learner and client corporate user account profile",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Unique Firebase Authentication UID",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User primary email address",
+          "maxLength": 120
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User full name or preferred display name",
+          "maxLength": 100
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "User avatar photo URL",
+          "maxLength": 500
+        },
+        "role": {
+          "type": "string",
+          "description": "Access control role assigned to user",
+          "enum": ["learner", "corporate_client", "trainer"],
+          "maxLength": 30
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when user profile document was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when user profile document was last updated"
+        }
+      },
+      "required": ["userId", "email", "displayName", "role"]
+    },
+    "Certificate": {
+      "title": "Learner Certificate",
+      "description": "Official competency certificate issued upon completing simulation or compliance tracks",
+      "type": "object",
+      "properties": {
+        "certificateId": {
+          "type": "string",
+          "description": "Unique certificate identifier code",
+          "maxLength": 128
+        },
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the recipient learner",
+          "maxLength": 128
+        },
+        "learnerName": {
+          "type": "string",
+          "description": "Full name of the credentialed learner",
+          "maxLength": 100
+        },
+        "learnerEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the credentialed learner",
+          "maxLength": 120
+        },
+        "programId": {
+          "type": "string",
+          "description": "Identifier of the completed program or cluster",
+          "maxLength": 80
+        },
+        "programTitle": {
+          "type": "string",
+          "description": "Full title of the training track",
+          "maxLength": 150
+        },
+        "sector": {
+          "type": "string",
+          "description": "Industry sector of the program",
+          "maxLength": 60
+        },
+        "hoursCompleted": {
+          "type": "number",
+          "description": "Credit hours accrued in the experiential simulation"
+        },
+        "score": {
+          "type": "number",
+          "description": "Percentage score earned on practical evaluation"
+        },
+        "verificationCode": {
+          "type": "string",
+          "description": "Cryptographic or randomized public certificate verification hash",
+          "maxLength": 64
+        },
+        "status": {
+          "type": "string",
+          "enum": ["issued", "verified", "revoked"],
+          "maxLength": 20
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date and time certificate was issued"
+        }
+      },
+      "required": ["certificateId", "userId", "learnerName", "programTitle", "verificationCode", "status"]
+    },
+    "Evaluation": {
+      "title": "Leadership Assessment",
+      "description": "105-question leadership and competency evaluation report",
+      "type": "object",
+      "properties": {
+        "evaluationId": {
+          "type": "string",
+          "description": "Unique evaluation submission identifier",
+          "maxLength": 128
+        },
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the participant",
+          "maxLength": 128
+        },
+        "participantName": {
+          "type": "string",
+          "description": "Full name of the assessment participant",
+          "maxLength": 100
+        },
+        "participantEmail": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the participant",
+          "maxLength": 120
+        },
+        "totalScore": {
+          "type": "number",
+          "description": "Total actual score accrued across 105 indicators out of 525"
+        },
+        "percentage": {
+          "type": "number",
+          "description": "Overall alignment percentage"
+        },
+        "calibratedLevel": {
+          "type": "string",
+          "description": "Executive calibration category",
+          "maxLength": 60
+        },
+        "dimensionsBreakdown": {
+          "type": "string",
+          "description": "JSON stringified summary of category scores and levels",
+          "maxLength": 2000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when assessment was submitted"
+        }
+      },
+      "required": ["evaluationId", "userId", "participantName", "totalScore", "percentage", "calibratedLevel"]
+    },
+    "Inquiry": {
+      "title": "Corporate Training Inquiry",
+      "description": "Corporate consultation or customized simulation proposal inquiry",
+      "type": "object",
+      "properties": {
+        "inquiryId": {
+          "type": "string",
+          "description": "Unique inquiry ticket identifier",
+          "maxLength": 128
+        },
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID if user was logged in, or anonymous identifier",
+          "maxLength": 128
+        },
+        "clientName": {
+          "type": "string",
+          "description": "Name of contact representative",
+          "maxLength": 100
+        },
+        "companyName": {
+          "type": "string",
+          "description": "Corporate or institutional organization name",
+          "maxLength": 120
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email address",
+          "maxLength": 120
+        },
+        "phone": {
+          "type": "string",
+          "description": "Contact phone number",
+          "maxLength": 30
+        },
+        "industry": {
+          "type": "string",
+          "description": "Target industry or specialization",
+          "maxLength": 60
+        },
+        "targetLearners": {
+          "type": "number",
+          "description": "Estimated cohort participant count"
+        },
+        "projectedRoiMultiplier": {
+          "type": "number",
+          "description": "Projected ROI multiplier calculated in accelerator tool"
+        },
+        "message": {
+          "type": "string",
+          "description": "Specific training requirements or inquiry message",
+          "maxLength": 1000
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "contacted", "scheduled", "closed"],
+          "maxLength": 20
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date inquiry was logged"
+        }
+      },
+      "required": ["inquiryId", "clientName", "companyName", "email", "industry", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents keyed by Firebase Authentication UID"
+    },
+    "/certificates/{certificateId}": {
+      "schema": "Certificate",
+      "description": "Official completion certificates earned and verified"
+    },
+    "/evaluations/{evaluationId}": {
+      "schema": "Evaluation",
+      "description": "Participant leadership evaluation diagnostic records"
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": "Inquiry",
+      "description": "Corporate inquiry and booking leads"
+    }
+  }
+}

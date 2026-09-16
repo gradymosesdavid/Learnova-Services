@@ -5,6 +5,7 @@ import { FAQAudioSection } from '../components/FAQAudioSection';
 import { LearnerConfirmationModal } from '../components/LearnerConfirmationModal';
 import { SUPPORTED_LANGUAGES, TRANSLATIONS } from '../data/translations';
 import { speechService } from '../utils/speechSynthesis';
+import { useFirebase } from '../firebase/context';
 import confetti from 'canvas-confetti';
 import {
   Award,
@@ -22,6 +23,8 @@ import {
   RotateCcw,
   Sparkles,
   Printer,
+  Cloud,
+  Check,
 } from 'lucide-react';
 
 interface LeadershipQuizPageProps {
@@ -33,10 +36,12 @@ export const LeadershipQuizPage: React.FC<LeadershipQuizPageProps> = ({
   language,
   setLanguage,
 }) => {
+  const { user, saveEvaluation, signInWithGoogle } = useFirebase();
   const [activeCatIndex, setActiveCatIndex] = useState<number>(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResults, setShowResults] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSavedToCloud, setIsSavedToCloud] = useState(false);
 
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
   const currentLangObj = SUPPORTED_LANGUAGES.find((l) => l.code === language);
@@ -113,9 +118,42 @@ export const LeadershipQuizPage: React.FC<LeadershipQuizPageProps> = ({
   const maxPossibleScore = totalQuestions * 5; // 525
   const overallScorePercentage = Math.round((totalActualScore / maxPossibleScore) * 100);
 
-  const handleFinishAssessment = () => {
+  const handleFinishAssessment = async () => {
     setShowResults(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const calibratedLevel =
+      overallScorePercentage >= 80
+        ? 'Master Transformational'
+        : overallScorePercentage >= 65
+        ? 'Senior Operational Leader'
+        : 'Emerging Capability';
+
+    if (user) {
+      try {
+        const evalId = `EVAL-${Date.now()}`;
+        await saveEvaluation({
+          evaluationId: evalId,
+          participantName: user.displayName || 'Learner Executive',
+          participantEmail: user.email || undefined,
+          totalScore: totalActualScore,
+          percentage: overallScorePercentage,
+          calibratedLevel,
+          dimensionsBreakdown: JSON.stringify(
+            categoryResults.map((c) => ({
+              category: c.title,
+              score: c.actualScore,
+              pct: c.percentage,
+              level: c.level,
+            }))
+          ),
+        });
+        setIsSavedToCloud(true);
+      } catch (err) {
+        console.error('Failed to save assessment to Firestore:', err);
+      }
+    }
+
     try {
       confetti({
         particleCount: 150,
@@ -125,6 +163,41 @@ export const LeadershipQuizPage: React.FC<LeadershipQuizPageProps> = ({
       });
     } catch (e) {
       console.warn('Confetti error', e);
+    }
+  };
+
+  const handleSaveEvaluationToCloudNow = async () => {
+    if (!user) {
+      await signInWithGoogle();
+    }
+    const calibratedLevel =
+      overallScorePercentage >= 80
+        ? 'Master Transformational'
+        : overallScorePercentage >= 65
+        ? 'Senior Operational Leader'
+        : 'Emerging Capability';
+
+    try {
+      const evalId = `EVAL-${Date.now()}`;
+      await saveEvaluation({
+        evaluationId: evalId,
+        participantName: user?.displayName || 'Learner Executive',
+        participantEmail: user?.email || undefined,
+        totalScore: totalActualScore,
+        percentage: overallScorePercentage,
+        calibratedLevel,
+        dimensionsBreakdown: JSON.stringify(
+          categoryResults.map((c) => ({
+            category: c.title,
+            score: c.actualScore,
+            pct: c.percentage,
+            level: c.level,
+          }))
+        ),
+      });
+      setIsSavedToCloud(true);
+    } catch (err) {
+      console.error('Failed to save assessment to Firestore:', err);
     }
   };
 
@@ -459,6 +532,20 @@ export const LeadershipQuizPage: React.FC<LeadershipQuizPageProps> = ({
                   <Printer className="w-4 h-4 text-[#B7E4C7]" />
                   <span>Print Report</span>
                 </button>
+                {isSavedToCloud ? (
+                  <span className="px-3.5 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs">
+                    <Check className="w-4 h-4" />
+                    <span>Saved to Cloud</span>
+                  </span>
+                ) : (
+                  <button
+                    onClick={handleSaveEvaluationToCloudNow}
+                    className="px-4 py-2.5 rounded-xl bg-[#1B4332] hover:bg-[#143326] text-white font-bold text-xs flex items-center gap-1.5 transition shadow-xs cursor-pointer"
+                  >
+                    <Cloud className="w-4 h-4 text-[#B7E4C7]" />
+                    <span>{user ? 'Save to Cloud' : 'Sign in & Save'}</span>
+                  </button>
+                )}
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="px-4 py-2.5 rounded-xl bg-[#E07A5F] hover:bg-[#C9664D] text-white font-extrabold text-xs flex items-center gap-1.5 transition shadow-xs cursor-pointer"

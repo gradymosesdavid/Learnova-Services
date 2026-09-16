@@ -1,0 +1,141 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default-deny catch-all (Pillar 4 / Global Safety Net)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Common Security Helper Functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        request.auth.token.email == 'gradymosesdavid@gmail.com' &&
+        request.auth.token.email_verified == true;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Entity Validation: User
+    function isValidUser(data) {
+      return data.keys().hasAll(['userId', 'email', 'displayName', 'role', 'createdAt', 'updatedAt']) &&
+        data.userId is string && data.userId.size() <= 128 && data.userId == request.auth.uid &&
+        data.email is string && data.email.size() <= 120 &&
+        data.displayName is string && data.displayName.size() <= 100 &&
+        data.role is string && (data.role == 'learner' || data.role == 'corporate_client' || data.role == 'trainer') &&
+        (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 500));
+    }
+
+    // Entity Validation: Certificate
+    function isValidCertificate(data) {
+      return data.keys().hasAll(['certificateId', 'userId', 'learnerName', 'programTitle', 'verificationCode', 'status', 'createdAt']) &&
+        data.certificateId is string && data.certificateId.size() <= 128 &&
+        data.userId is string && data.userId.size() <= 128 && data.userId == request.auth.uid &&
+        data.learnerName is string && data.learnerName.size() <= 100 &&
+        data.programTitle is string && data.programTitle.size() <= 150 &&
+        data.verificationCode is string && data.verificationCode.size() <= 64 &&
+        data.status is string && (data.status == 'issued' || data.status == 'verified' || data.status == 'revoked') &&
+        (!('learnerEmail' in data) || (data.learnerEmail is string && data.learnerEmail.size() <= 120)) &&
+        (!('programId' in data) || (data.programId is string && data.programId.size() <= 80)) &&
+        (!('sector' in data) || (data.sector is string && data.sector.size() <= 60)) &&
+        (!('hoursCompleted' in data) || (data.hoursCompleted is number)) &&
+        (!('score' in data) || (data.score is number));
+    }
+
+    // Entity Validation: Evaluation
+    function isValidEvaluation(data) {
+      return data.keys().hasAll(['evaluationId', 'userId', 'participantName', 'totalScore', 'percentage', 'calibratedLevel', 'createdAt']) &&
+        data.evaluationId is string && data.evaluationId.size() <= 128 &&
+        data.userId is string && data.userId.size() <= 128 && data.userId == request.auth.uid &&
+        data.participantName is string && data.participantName.size() <= 100 &&
+        data.totalScore is number && data.totalScore >= 0 && data.totalScore <= 525 &&
+        data.percentage is number && data.percentage >= 0 && data.percentage <= 100 &&
+        data.calibratedLevel is string && data.calibratedLevel.size() <= 60 &&
+        (!('participantEmail' in data) || (data.participantEmail is string && data.participantEmail.size() <= 120)) &&
+        (!('dimensionsBreakdown' in data) || (data.dimensionsBreakdown is string && data.dimensionsBreakdown.size() <= 2000));
+    }
+
+    // Entity Validation: Inquiry
+    function isValidInquiry(data) {
+      return data.keys().hasAll(['inquiryId', 'clientName', 'companyName', 'email', 'industry', 'status', 'createdAt']) &&
+        data.inquiryId is string && data.inquiryId.size() <= 128 &&
+        data.clientName is string && data.clientName.size() <= 100 &&
+        data.companyName is string && data.companyName.size() <= 120 &&
+        data.email is string && data.email.size() <= 120 &&
+        data.industry is string && data.industry.size() <= 60 &&
+        data.status is string && (data.status == 'pending' || data.status == 'contacted' || data.status == 'scheduled' || data.status == 'closed') &&
+        (!('userId' in data) || (data.userId is string && data.userId.size() <= 128)) &&
+        (!('phone' in data) || (data.phone is string && data.phone.size() <= 30)) &&
+        (!('targetLearners' in data) || (data.targetLearners is number)) &&
+        (!('projectedRoiMultiplier' in data) || (data.projectedRoiMultiplier is number)) &&
+        (!('message' in data) || (data.message is string && data.message.size() <= 1000));
+    }
+
+    // 1. Users Collection
+    match /users/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isValidId(userId) && isOwner(userId) && isValidUser(incoming());
+      allow update: if isValidId(userId) && isOwner(userId) && isValidUser(incoming()) &&
+        incoming().userId == existing().userId &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'photoURL', 'updatedAt']);
+      allow delete: if isValidId(userId) && (isOwner(userId) || isAdmin());
+    }
+
+    // 2. Certificates Collection
+    match /certificates/{certificateId} {
+      // Individual certificates can be publicly verified with certificate ID / code
+      allow get: if isValidId(certificateId);
+      // List is strictly restricted to current user's owned records (Pillar 8: Query Enforcer) or admin
+      allow list: if (isSignedIn() && resource.data.userId == request.auth.uid) || isAdmin();
+      allow create: if isValidId(certificateId) && isSignedIn() && isValidCertificate(incoming());
+      allow update: if isValidId(certificateId) && (isAdmin() || (isOwner(existing().userId) &&
+        incoming().userId == existing().userId &&
+        incoming().certificateId == existing().certificateId &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['status'])));
+      allow delete: if isValidId(certificateId) && isAdmin();
+    }
+
+    // 3. Evaluations Collection (Leadership Diagnostics)
+    match /evaluations/{evaluationId} {
+      allow get: if isValidId(evaluationId) && (isOwner(existing().userId) || isAdmin());
+      allow list: if (isSignedIn() && resource.data.userId == request.auth.uid) || isAdmin();
+      allow create: if isValidId(evaluationId) && isSignedIn() && isValidEvaluation(incoming());
+      allow update: if isValidId(evaluationId) && isAdmin();
+      allow delete: if isValidId(evaluationId) && (isOwner(existing().userId) || isAdmin());
+    }
+
+    // 4. Inquiries Collection (Corporate Training Bookings)
+    match /inquiries/{inquiryId} {
+      allow get: if isValidId(inquiryId) && (isAdmin() || (isSignedIn() && ('userId' in resource.data) && resource.data.userId == request.auth.uid));
+      allow list: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow create: if isValidId(inquiryId) && isValidInquiry(incoming());
+      allow update: if isValidId(inquiryId) && (isAdmin() || (
+        isSignedIn() &&
+        ('userId' in existing()) &&
+        existing().userId == request.auth.uid &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['status', 'message'])
+      ));
+      allow delete: if isValidId(inquiryId) && isAdmin();
+    }
+  }
+}

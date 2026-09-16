@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { PageId, SupportedLanguage } from '../types';
 import { SUPPORTED_LANGUAGES, TRANSLATIONS } from '../data/translations';
-import { Volume2, Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { Volume2, Menu, X, Globe, ChevronDown, User, LogIn, Award } from 'lucide-react';
 import { speechService } from '../utils/speechSynthesis';
+import { useFirebase } from '../firebase/context';
+import { LearnerPortalModal } from './LearnerPortalModal';
 
 interface NavbarProps {
   currentPage: PageId;
@@ -21,6 +23,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [portalOpen, setPortalOpen] = useState(false);
+  const { user, signInWithGoogle, certificates, loading } = useFirebase();
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
   const currentLangObj = SUPPORTED_LANGUAGES.find((l) => l.code === language);
 
@@ -164,12 +168,54 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="header-listen-audio-btn"
               onClick={onTriggerPageAudio}
-              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-xl bg-[#E07A5F] hover:bg-[#C9664D] text-white font-bold shadow-xs transition hover:scale-102 active:scale-98 cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl bg-[#E07A5F] hover:bg-[#C9664D] text-white font-bold shadow-xs transition hover:scale-102 active:scale-98 cursor-pointer"
               title={`Listen to this page in ${currentLangObj?.name}`}
             >
               <Volume2 className="w-4 h-4" />
-              <span className="hidden md:inline">{t.listenAudio}</span>
+              <span className="hidden lg:inline">{t.listenAudio}</span>
             </button>
+
+            {/* Firebase Auth / Learner Portal Button */}
+            {!loading && (
+              user ? (
+                <button
+                  id="user-portal-toggle-btn"
+                  onClick={() => setPortalOpen(true)}
+                  className="flex items-center gap-2 pl-1.5 pr-3 py-1 text-xs font-semibold rounded-xl border border-[#B7E4C7] bg-white text-[#1B4332] hover:bg-[#B7E4C7]/20 transition shadow-2xs cursor-pointer"
+                  title="Open Learner Cloud Portal"
+                >
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt={user.displayName || 'User'}
+                      className="w-7 h-7 rounded-lg object-cover border border-[#B7E4C7]"
+                    />
+                  ) : (
+                    <div className="w-7 h-7 rounded-lg bg-[#1B4332] text-white flex items-center justify-center font-bold text-xs">
+                      {user.displayName ? user.displayName.charAt(0).toUpperCase() : 'U'}
+                    </div>
+                  )}
+                  <div className="hidden md:flex flex-col text-left leading-tight">
+                    <span className="font-bold text-[11px] truncate max-w-[90px]">
+                      {user.displayName || 'Learner'}
+                    </span>
+                    <span className="text-[9px] text-[#1B4332]/60 font-medium">
+                      {certificates.length} Certs
+                    </span>
+                  </div>
+                </button>
+              ) : (
+                <button
+                  id="login-google-btn"
+                  onClick={() => signInWithGoogle()}
+                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-xl border border-[#1B4332]/30 bg-white text-[#1B4332] hover:bg-[#1B4332] hover:text-white transition shadow-2xs cursor-pointer"
+                  title="Sign In to Save Certifications"
+                >
+                  <LogIn className="w-3.5 h-3.5 text-[#E07A5F]" />
+                  <span className="hidden sm:inline">Sign In</span>
+                </button>
+              )
+            )}
 
             {/* Mobile Menu Toggle */}
             <button
@@ -186,6 +232,49 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="xl:hidden bg-white border-b border-[#B7E4C7] px-4 pt-2 pb-6 space-y-1">
+          {/* Mobile Auth Button */}
+          <div className="pb-2 mb-2 border-b border-[#B7E4C7]/40">
+            {user ? (
+              <button
+                onClick={() => {
+                  setPortalOpen(true);
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center justify-between p-3 rounded-xl bg-[#B7E4C7]/20 border border-[#B7E4C7] text-left"
+              >
+                <div className="flex items-center gap-2.5">
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt={user.displayName || 'User'}
+                      className="w-8 h-8 rounded-lg object-cover"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-lg bg-[#1B4332] text-white flex items-center justify-center font-bold text-xs">
+                      {user.displayName?.charAt(0) || 'U'}
+                    </div>
+                  )}
+                  <div>
+                    <div className="text-xs font-bold text-[#1B4332]">{user.displayName || 'Learner'}</div>
+                    <div className="text-[11px] text-[#1B4332]/60">{user.email}</div>
+                  </div>
+                </div>
+                <Award className="w-4 h-4 text-[#E07A5F]" />
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  signInWithGoogle();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1B4332] text-white text-xs font-bold shadow-xs"
+              >
+                <LogIn className="w-4 h-4 text-[#B7E4C7]" />
+                <span>Sign In with Google</span>
+              </button>
+            )}
+          </div>
+
           {navLinks.map((link) => {
             const isActive = currentPage === link.id;
             return (
@@ -209,6 +298,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </div>
       )}
+
+      {/* Cloud Portal Modal */}
+      <LearnerPortalModal
+        isOpen={portalOpen}
+        onClose={() => setPortalOpen(false)}
+      />
     </header>
   );
 };
