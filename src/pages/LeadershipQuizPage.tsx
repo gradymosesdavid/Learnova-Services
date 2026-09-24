@@ -218,7 +218,7 @@ export const LeadershipQuizPage: React.FC<LeadershipQuizPageProps> = ({
       id: 'quiz-faq-3',
       question: 'Can this evaluation report be used for annual corporate appraisals?',
       answer:
-        'Yes. Many Learnova Services enterprise clients utilize this comprehensive 7-dimension diagnostic as a standard baseline for executive leadership development and promotional succession planning.',
+        'Yes. Many LearnEnlight enterprise clients utilize this comprehensive 7-dimension diagnostic as a standard baseline for executive leadership development and promotional succession planning.',
     },
   ];
 
@@ -245,7 +245,7 @@ export const LeadershipQuizPage: React.FC<LeadershipQuizPageProps> = ({
               <span>105-Question Self-Evaluation Diagnostic</span>
             </div>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-['Outfit'] tracking-tight text-[#F8F9FA]">
-              LEARNOVA SERVICES LEADERSHIP & COMPETENCY ASSESSMENT
+              LEARNENLIGHT LEADERSHIP & COMPETENCY ASSESSMENT
             </h1>
             <p className="mt-2 text-xs sm:text-sm text-[#F8F9FA]/80 max-w-2xl leading-relaxed">
               Comprehensive self-evaluation covering Problem Solving, Decision Making, Design Thinking, Six Sigma, Communication, Myers-Briggs, and Leadership Style.
@@ -271,7 +271,7 @@ export const LeadershipQuizPage: React.FC<LeadershipQuizPageProps> = ({
 
             <button
               onClick={() => {
-                const intro = `Learnova Services Leadership Self-Evaluation Assessment. 105 Questions across 7 dimensions: Problem Solving, Decision Making, Design Thinking, Six Sigma, Business Communication, Myers-Briggs, and Leadership Style. Rate each statement from 1 to 5.`;
+                const intro = `LearnEnlight Leadership Self-Evaluation Assessment. 105 Questions across 7 dimensions: Problem Solving, Decision Making, Design Thinking, Six Sigma, Business Communication, Myers-Briggs, and Leadership Style. Rate each statement from 1 to 5.`;
                 speechService.speak(intro, 'Leadership Assessment Overview', language);
               }}
               className="px-4 py-2 rounded-xl bg-[#E07A5F] hover:bg-[#C9664D] text-white text-xs font-bold flex items-center gap-1.5 transition shadow-xs cursor-pointer"
@@ -513,7 +513,7 @@ export const LeadershipQuizPage: React.FC<LeadershipQuizPageProps> = ({
                   Personalized Leadership & Competency Profile
                 </h2>
                 <p className="text-xs sm:text-sm text-[#1B4332]/75 mt-1">
-                  Evaluated across 105 behavioral and operational indicators based on Learnova Services' experiential capability model.
+                  Evaluated across 105 behavioral and operational indicators based on LearnEnlight's experiential capability model.
                 </p>
               </div>
 
@@ -656,13 +656,13 @@ export const LeadershipQuizPage: React.FC<LeadershipQuizPageProps> = ({
           <div className="p-8 rounded-3xl bg-[#1B4332] text-white shadow-xl border border-[#B7E4C7]/30">
             <div className="max-w-3xl">
               <span className="text-xs font-bold uppercase tracking-wider text-[#B7E4C7] block mb-1">
-                Learnova Services Experiential Roadmap
+                LearnEnlight Experiential Roadmap
               </span>
               <h3 className="text-2xl font-black font-['Outfit'] text-[#F8F9FA]">
                 Next-Step Developmental Interventions
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-[#F8F9FA]/80 leading-relaxed">
-                To bridge capability gaps identified in this 105-question audit, enroll in Learnova Services' experiential simulation modules in your sector (Manufacturing, Automobile, IT/ITES, Hospitality, or General Services).
+                To bridge capability gaps identified in this 105-question audit, enroll in LearnEnlight's experiential simulation modules in your sector (Manufacturing, Automobile, IT/ITES, Hospitality, or General Services).
               </p>
             </div>
           </div>

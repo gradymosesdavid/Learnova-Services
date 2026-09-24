@@ -113,7 +113,7 @@ export const LearnerConfirmationModal: React.FC<LearnerConfirmationModalProps> =
             </div>
             <div>
               <h3 className="text-lg font-bold font-['Outfit'] tracking-tight">
-                {certificateIssued ? 'Learnova Services Verified Certificate' : 'Learner Practical Sign-Off & Verification'}
+                {certificateIssued ? 'LearnEnlight Verified Certificate' : 'Learner Practical Sign-Off & Verification'}
               </h3>
               <p className="text-xs text-[#B7E4C7] font-medium">
                 {programTitle} • {confirmedCount} of {totalSteps} Checkpoints Confirmed
@@ -178,7 +178,7 @@ export const LearnerConfirmationModal: React.FC<LearnerConfirmationModalProps> =
                     className="mt-1 h-4 w-4 rounded border-[#B7E4C7] text-[#1B4332] focus:ring-[#1B4332] accent-[#1B4332] cursor-pointer"
                   />
                   <span className="text-xs text-[#1B4332]/80 leading-snug">
-                    I formally confirm that I have reviewed the standard operating procedures, verified all torque/ESD safety criteria, and demonstrated experiential proficiency in accordance with Learnova Services guidelines.
+                    I formally confirm that I have reviewed the standard operating procedures, verified all torque/ESD safety criteria, and demonstrated experiential proficiency in accordance with LearnEnlight guidelines.
                   </span>
                 </label>
               </div>
@@ -209,7 +209,7 @@ export const LearnerConfirmationModal: React.FC<LearnerConfirmationModalProps> =
                 className="p-8 rounded-2xl border-4 border-double border-[#1B4332] bg-white text-center relative overflow-hidden shadow-inner"
               >
                 <div className="text-xs uppercase tracking-widest font-extrabold text-[#E07A5F]">
-                  Learnova Services — Learn & Innovate Mindsets & Ideas
+                  LearnEnlight — Learn & Innovate Mindsets & Ideas
                 </div>
                 <h4 className="text-2xl sm:text-3xl font-black font-['Outfit'] text-[#1B4332] mt-2 mb-1 tracking-tight">
                   CERTIFICATE OF EXPERIENTIAL MASTERY
@@ -245,7 +245,7 @@ export const LearnerConfirmationModal: React.FC<LearnerConfirmationModalProps> =
                   </div>
                   <div className="text-right">
                     <span className="text-[10px] uppercase font-bold text-[#1B4332]/60 block">Certified By</span>
-                    <span className="font-bold text-[#1B4332]">Learnova Services L&D Council</span>
+                    <span className="font-bold text-[#1B4332]">LearnEnlight L&D Council</span>
                     <span className="text-[10px] text-[#E07A5F] font-semibold block">AoN & Cambridge Accredited</span>
                   </div>
                 </div>
@@ -257,7 +257,7 @@ export const LearnerConfirmationModal: React.FC<LearnerConfirmationModalProps> =
                   <Cloud className="w-4 h-4 text-[#1B4332]" />
                   <span className="text-xs text-[#1B4332] font-semibold">
                     {isSavedToCloud
-                      ? 'Stored securely in your Learnova Services Firebase Cloud Profile'
+                      ? 'Stored securely in your LearnEnlight Firebase Cloud Profile'
                       : user
                       ? 'Ready to sync to your Firebase cloud account'
                       : 'Sign in to save this credential to your persistent Learner Cloud account'}

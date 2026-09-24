@@ -55,7 +55,7 @@ export const MandatoryCompliancePage: React.FC<MandatoryCompliancePageProps> = (
       id: 'comp-faq-1',
       question: 'How do statutory compliance certificates reduce corporate liability?',
       answer:
-        'Regulatory bodies and courts heavily scrutinize whether employees received verifiable, periodic, and comprehended training. Learnova Services produces cryptographically timestamped learner logs and comprehension checks adhering to OSHA, ISO 27001, GDPR, and FSSAI evidentiary standards.',
+        'Regulatory bodies and courts heavily scrutinize whether employees received verifiable, periodic, and comprehended training. LearnEnlight produces cryptographically timestamped learner logs and comprehension checks adhering to OSHA, ISO 27001, GDPR, and FSSAI evidentiary standards.',
     },
     {
       id: 'comp-faq-2',

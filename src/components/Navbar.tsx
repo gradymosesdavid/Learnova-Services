@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold font-['Outfit'] text-[#1B4332] tracking-tight">
-                  Learnova Services
+                  LearnEnlight
                 </span>
                 <span className="hidden sm:inline-block px-2.5 py-0.5 text-[10px] uppercase font-bold tracking-wider bg-[#B7E4C7]/40 text-[#1B4332] rounded-full border border-[#B7E4C7]">
                   L&D Consultancy

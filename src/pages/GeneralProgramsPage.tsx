@@ -44,7 +44,7 @@ export const GeneralProgramsPage: React.FC<GeneralProgramsPageProps> = ({
       id: 'gen-faq-1',
       question: 'How do you measure behavioral transformation in soft skills training?',
       answer:
-        'Learnova Services utilizes pre- and post-intervention 360-degree behavioral rubric assessments, observable shift-floor indicators (e.g., grievance count, safety incident reporting rates, sprint velocity), and follow-up coaching at Day 30 and Day 60 to verify sustained behavioral persistence.',
+        'LearnEnlight utilizes pre- and post-intervention 360-degree behavioral rubric assessments, observable shift-floor indicators (e.g., grievance count, safety incident reporting rates, sprint velocity), and follow-up coaching at Day 30 and Day 60 to verify sustained behavioral persistence.',
     },
     {
       id: 'gen-faq-2',
@@ -56,7 +56,7 @@ export const GeneralProgramsPage: React.FC<GeneralProgramsPageProps> = ({
       id: 'gen-faq-3',
       question: 'Can these programs be conducted in local regional languages for frontline workers?',
       answer:
-        'Yes. Learnova Services facilitates programs natively in Tamil, Hindi, Malayalam, Kannada, Telugu, English, German, Japanese, and Korean to guarantee every shift worker comprehends and internalizes behavioral expectations.',
+        'Yes. LearnEnlight facilitates programs natively in Tamil, Hindi, Malayalam, Kannada, Telugu, English, German, Japanese, and Korean to guarantee every shift worker comprehends and internalizes behavioral expectations.',
     },
   ];
 

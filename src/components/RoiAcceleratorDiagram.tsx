@@ -108,13 +108,13 @@ export const RoiAcceleratorDiagram: React.FC<RoiAcceleratorProps> = ({ language 
   ];
 
   const handleReadDiagram = () => {
-    const summaryText = `Learnova Services' Simplified L and D RoI Accelerator Model guarantees three times return on investment and rapid deployment. 
+    const summaryText = `LearnEnlight's Simplified L and D RoI Accelerator Model guarantees three times return on investment and rapid deployment. 
     Stage 1: Rapid Proof of Concept and Goal Setting with needs analysis in 48 hours. 
     Stage 2: Fast-Track Project Start within 48 hours for soft skills, simulations, and tech solutions. 
     Stage 3: AI-Driven Evaluation and real-time personalized outcome tracking. 
     Stage 4: Measurable Performance Gains, KPI improvements, and guaranteed business impact. 
     Stage 5: Follow-up and optimization thirty days after for sustained organizational value.`;
-    speechService.speak(summaryText, 'Learnova Services 3X RoI Accelerator Model', language);
+    speechService.speak(summaryText, 'LearnEnlight 3X RoI Accelerator Model', language);
   };
 
   // 3X ROI Calculations
@@ -129,7 +129,7 @@ export const RoiAcceleratorDiagram: React.FC<RoiAcceleratorProps> = ({ language 
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B7E4C7]/30 text-[#1B4332] border border-[#B7E4C7] text-xs font-bold tracking-wide uppercase mb-2">
             <Flame className="w-3.5 h-3.5 text-[#E07A5F]" />
-            <span>Learnova Services Proprietary Methodology</span>
+            <span>LearnEnlight Proprietary Methodology</span>
           </div>
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#1B4332] tracking-tight font-['Outfit'] uppercase">
             SIMPLIFIED L&D RoI ACCELERATOR MODEL: 3X ROI AND RAPID DEPLOYMENT
@@ -291,7 +291,7 @@ export const RoiAcceleratorDiagram: React.FC<RoiAcceleratorProps> = ({ language 
         <div className="flex items-center gap-2 mb-4">
           <BarChart3 className="w-5 h-5 text-[#E07A5F]" />
           <h3 className="text-base font-bold text-[#1B4332]">
-            Learnova Services 3X Corporate ROI Estimator
+            LearnEnlight 3X Corporate ROI Estimator
           </h3>
         </div>
 

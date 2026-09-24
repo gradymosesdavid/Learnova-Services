@@ -64,12 +64,12 @@ export default function App() {
         break;
       case 'leadership-quiz':
         readText =
-          'Learnova Services 105-Question Leadership Self-Evaluation Assessment. Rate yourself from 1 to 5 across 7 core dimensions: Problem Solving, Decision Making, Design Thinking, Six Sigma, Business Communication, Myers-Briggs psychological drivers, and Leadership Style.';
+          'LearnEnlight 105-Question Leadership Self-Evaluation Assessment. Rate yourself from 1 to 5 across 7 core dimensions: Problem Solving, Decision Making, Design Thinking, Six Sigma, Business Communication, Myers-Briggs psychological drivers, and Leadership Style.';
         title = '105-Question Leadership Diagnostic';
         break;
       default:
-        readText = 'Learnova Services. Learn and Innovate Mindsets and Ideas.';
-        title = 'Learnova Services';
+        readText = 'LearnEnlight. Learn and Innovate Mindsets and Ideas.';
+        title = 'LearnEnlight';
     }
 
     speechService.speak(readText, title, language);

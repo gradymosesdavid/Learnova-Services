@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
               <div>
                 <span className="text-xl font-black font-['Outfit'] tracking-tight text-[#F8F9FA] block">
-                  LEARNOVA SERVICES
+                  LEARNENLIGHT
                 </span>
                 <span className="text-[11px] font-semibold tracking-wider uppercase text-[#B7E4C7] block -mt-1">
                   Learn & Innovate Mindsets & Ideas
@@ -158,7 +158,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#B7E4C7]/60 gap-4">
-          <p>© {new Date().getFullYear()} Learnova Services - Learn & Innovate Mindsets & Ideas. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} LearnEnlight - Learn & Innovate Mindsets & Ideas. All rights reserved.</p>
           <p className="flex items-center gap-1 text-[#F8F9FA]/60">
             <span>Corporate Experiential Excellence</span>
           </p>

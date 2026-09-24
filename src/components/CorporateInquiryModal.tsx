@@ -75,7 +75,7 @@ export const CorporateInquiryModal: React.FC<CorporateInquiryModalProps> = ({
                 {isSubmitted ? 'Proposal Request Confirmed' : 'Request 48-Hour PoC & Custom Proposal'}
               </h3>
               <p className="text-xs text-[#B7E4C7] font-medium">
-                Learnova Services L&D RoI Accelerator
+                LearnEnlight L&D RoI Accelerator
               </p>
             </div>
           </div>

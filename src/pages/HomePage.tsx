@@ -127,14 +127,14 @@ export const HomePage: React.FC<HomePageProps> = ({
   const currentIndObj = industries.find((ind) => ind.id === selectedIndustry) || industries[0];
 
   const handleReadIntro = () => {
-    const text = `Welcome to Learnova Services. Learn and Innovate Mindsets and Ideas. 
+    const text = `Welcome to LearnEnlight. Learn and Innovate Mindsets and Ideas. 
     ${t.aboutSnippetText} 
     Explore our experiential industry tracks in ${currentLangObj?.name}.`;
-    speechService.speak(text, 'Learnova Services Introduction', language);
+    speechService.speak(text, 'LearnEnlight Introduction', language);
   };
 
   return (
-    <div id="learnova-home-page" className="min-w-0 bg-[#F8F9FA]">
+    <div id="learnenlight-home-page" className="min-w-0 bg-[#F8F9FA]">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#B7E4C7]/20 via-[#F8F9FA] to-[#F8F9FA] py-16 sm:py-20 border-b border-[#B7E4C7]/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

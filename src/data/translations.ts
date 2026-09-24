@@ -46,7 +46,7 @@ export interface TranslationDictionary {
 
 export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
   en: {
-    brandTitle: 'Learnova Services',
+    brandTitle: 'LearnEnlight',
     tagline: 'Learn & Innovate Mindsets & Ideas',
     navHome: 'Home',
     navAbout: 'About Us',
@@ -59,7 +59,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     listenAudio: 'Listen to Page',
     stopAudio: 'Stop Audio',
     playingAudio: 'Playing narration...',
-    aboutSnippetHeading: 'About Learnova Services',
+    aboutSnippetHeading: 'About LearnEnlight',
     aboutSnippetText:
       'We are corporate HR professionals with over a decade of experience in Learning & Development, Leadership Development, Competency & Skill Development and Organizational Development.',
     readMoreAbout: 'Discover Our Certifications & Mission',
@@ -79,7 +79,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     startAssessment: 'Begin Leadership Self-Evaluation (105 Questions)',
   },
   ko: {
-    brandTitle: '러노바 서비스 (Learnova Services)',
+    brandTitle: 'LearnEnlight',
     tagline: '사고방식과 아이디어의 학습과 혁신 (Learn & Innovate Mindsets & Ideas)',
     navHome: '홈',
     navAbout: '회사 소개',
@@ -92,7 +92,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     listenAudio: '오디오로 듣기',
     stopAudio: '재생 중지',
     playingAudio: '오디오 나레이션 재생 중...',
-    aboutSnippetHeading: '러노바 서비스 소개',
+    aboutSnippetHeading: 'LearnEnlight 소개',
     aboutSnippetText:
       '저희는 학습 및 개발(L&D), 리더십 개발, 역량 및 스킬 육성, 조직 개발 분야에서 10년 이상의 전문 경력을 보유한 기업 HR 전문가 그룹입니다.',
     readMoreAbout: '공인 자격 및 미션 살펴보기',
@@ -112,7 +112,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     startAssessment: '리더십 자가 진단 시작 (총 105개 문항)',
   },
   ja: {
-    brandTitle: 'ラーノバ・サービシズ (Learnova Services)',
+    brandTitle: 'LearnEnlight',
     tagline: 'マインドセットとアイデアの学習と革新 (Learn & Innovate Mindsets & Ideas)',
     navHome: 'ホーム',
     navAbout: '会社案内',
@@ -125,7 +125,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     listenAudio: '音声で聴く',
     stopAudio: '音声を停止',
     playingAudio: '音声を再生しています...',
-    aboutSnippetHeading: 'Learnova Servicesについて',
+    aboutSnippetHeading: 'LearnEnlightについて',
     aboutSnippetText:
       '私たちは人材育成(L&D)、リーダーシップ開発、コンピテンシー育成、組織開発において10年以上の実績を持つ企業人事のスペシャリスト集団です。',
     readMoreAbout: '認定資格とミッションを見る',
@@ -145,7 +145,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     startAssessment: 'リーダーシップ自己評価を開始 (全105問)',
   },
   de: {
-    brandTitle: 'Learnova Services',
+    brandTitle: 'LearnEnlight',
     tagline: 'Learn & Innovate Mindsets & Ideas',
     navHome: 'Startseite',
     navAbout: 'Über uns',
@@ -158,7 +158,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     listenAudio: 'Seite anhören',
     stopAudio: 'Audio stoppen',
     playingAudio: 'Audio wird abgespielt...',
-    aboutSnippetHeading: 'Über Learnova Services',
+    aboutSnippetHeading: 'Über LearnEnlight',
     aboutSnippetText:
       'Wir sind HR-Profis mit über einem Jahrzehnt Erfahrung in Learning & Development, Führungskräfteentwicklung, Kompetenzaufbau und Organisationsentwicklung.',
     readMoreAbout: 'Zertifizierungen und Mission entdecken',
@@ -178,7 +178,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     startAssessment: 'Führungs-Selbstevaluation starten (105 Fragen)',
   },
   ta: {
-    brandTitle: 'லேர்னோவா சர்வீசஸ் (Learnova Services)',
+    brandTitle: 'LearnEnlight',
     tagline: 'மனநிலைகளையும் யோசனைகளையும் கற்றலும் புதுமைப்படுத்துதலும் (Learn & Innovate Mindsets & Ideas)',
     navHome: 'முகப்பு',
     navAbout: 'எங்களை பற்றி',
@@ -191,7 +191,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     listenAudio: 'குரல் வழியே கேட்க',
     stopAudio: 'ஆடியோவை நிறுத்து',
     playingAudio: 'ஆடியோ ஒலிக்கிறது...',
-    aboutSnippetHeading: 'லேர்னோவா சர்வீசஸ் பற்றி',
+    aboutSnippetHeading: 'LearnEnlight பற்றி',
     aboutSnippetText:
       'நாங்கள் கற்றல் & மேம்பாடு, தலைமைத்துவ உருவாக்கம், திறன் மேம்பாடு மற்றும் நிறுவன வளர்ச்சியில் 10 ஆண்டுகளுக்கும் மேலான அனுபவம் கொண்ட கார்ப்பரேட் மனிதவள வல்லுநர்கள்.',
     readMoreAbout: 'எங்கள் சான்றிதழ்கள் & நோக்கங்கள்',
@@ -211,7 +211,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     startAssessment: 'தலைமைத்துவ மதிப்பீட்டைத் தொடங்குக (105 கேள்விகள்)',
   },
   hi: {
-    brandTitle: 'लर्नोवा सर्विसेज (Learnova Services)',
+    brandTitle: 'LearnEnlight',
     tagline: 'मानसिकता और विचारों को सीखें और नवाचार करें (Learn & Innovate Mindsets & Ideas)',
     navHome: 'होम',
     navAbout: 'हमारे बारे में',
@@ -224,7 +224,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     listenAudio: 'ऑडियो सुनें',
     stopAudio: 'ऑडियो रोकें',
     playingAudio: 'ऑडियो विवरण चल रहा है...',
-    aboutSnippetHeading: 'लर्नोवा सर्विसेज के बारे में',
+    aboutSnippetHeading: 'LearnEnlight के बारे में',
     aboutSnippetText:
       'हम कॉर्पोरेट एचआर पेशेवर हैं, जिनके पास एलएंडडी (लर्निंग एंड डेवलपमेंट), नेतृत्व विकास, योग्यता एवं कौशल विकास और संगठनात्मक विकास में एक दशक से अधिक का समृद्ध अनुभव है।',
     readMoreAbout: 'हमारे प्रमाणपत्र और दृष्टिकोण जानें',
@@ -244,7 +244,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     startAssessment: 'नेतृत्व स्व-मूल्यांकन शुरू करें (105 प्रश्न)',
   },
   ml: {
-    brandTitle: 'ലേർനോവ സർവീസസ് (Learnova Services)',
+    brandTitle: 'LearnEnlight',
     tagline: 'മനോഭാവങ്ങളും ആശയങ്ങളും പഠിക്കുകയും നവീകരിക്കുകയും ചെയ്യുക (Learn & Innovate Mindsets & Ideas)',
     navHome: 'ഹോം',
     navAbout: 'ഞങ്ങളെക്കുറിച്ച്',
@@ -257,7 +257,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     listenAudio: 'ശ്രാവ്യരൂപത്തിൽ കേൾക്കുക',
     stopAudio: 'ഓഡിയോ നിർത്തുക',
     playingAudio: 'ഓഡിയോ പ്ലേ ചെയ്യുന്നു...',
-    aboutSnippetHeading: 'ലേർനോവ സർവീസസിനെക്കുറിച്ച്',
+    aboutSnippetHeading: 'LearnEnlight കുറിച്ച്',
     aboutSnippetText:
       'ലേണിംഗ് & ഡെവലപ്‌മെന്റ്, നേതൃത്വ വികസനം, നൈപുണ്യ വികസനം, ഓർഗനൈസേഷണൽ ഡെവലപ്‌മെന്റ് എന്നിവയിൽ ഒരു പതിറ്റാണ്ടിലേറെ പ്രവൃത്തിപരിചയമുള്ള കോർപ്പറേറ്റ് എച്ച്ആർ പ്രൊഫഷണലുകളാണ് ഞങ്ങൾ.',
     readMoreAbout: 'ഞങ്ങളുടെ സർട്ടിഫിക്കേഷനുകൾ കാണുക',
@@ -277,7 +277,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     startAssessment: 'ലീഡർഷിപ്പ് വിലയിരുത്തൽ ആരംഭിക്കുക (105 ചോദ്യങ്ങൾ)',
   },
   kn: {
-    brandTitle: 'ಲರ್ನೋವಾ ಸರ್ವಿಸಸ್ (Learnova Services)',
+    brandTitle: 'LearnEnlight',
     tagline: 'ಮನಸ್ಥಿತಿ ಮತ್ತು ಆಲೋಚನೆಗಳನ್ನು ಕಲಿಯಿರಿ ಮತ್ತು ನಾವೀನ್ಯತೆಗೊಳಿಸಿ (Learn & Innovate Mindsets & Ideas)',
     navHome: 'ಮುಖಪುಟ',
     navAbout: 'ನಮ್ಮ ಬಗ್ಗೆ',
@@ -290,7 +290,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     listenAudio: 'ಆಡಿಯೋ ಆಲಿಸಿ',
     stopAudio: 'ಆಡಿಯೋ ನಿಲ್ಲಿಸಿ',
     playingAudio: 'ಆಡಿಯೋ ಪ್ಲೇ ಆಗುತ್ತಿದೆ...',
-    aboutSnippetHeading: 'ಲರ್ನೋವಾ ಸರ್ವಿಸಸ್ ಕುರಿತು',
+    aboutSnippetHeading: 'LearnEnlight ಕುರಿತು',
     aboutSnippetText:
       'ನಾವು ಕಲಿಕೆ ಮತ್ತು ಅಭಿವೃದ್ಧಿ (L&D), ನಾಯಕತ್ವ ರೂಪಿಸುವಿಕೆ, ಕೌಶಲ್ಯ ವಿಕಸನ ಮತ್ತು ಸಾಂಸ್ಥಿಕ ಅಭಿವೃದ್ಧಿಯಲ್ಲಿ ಹತ್ತು ವರ್ಷಗಳಿಗಿಂತ ಹೆಚ್ಚಿನ ಅನುಭವ ಹೊಂದಿರುವ ಕಾರ್ಪೊರೇಟ್ ಮಾನವ ಸಂಪನ್ಮೂಲ ತಜ್ಞರಾಗಿದ್ದೇವೆ.',
     readMoreAbout: 'ನಮ್ಮ ಮಾನ್ಯತೆಗಳು ಮತ್ತು ಗುರಿಗಳನ್ನು ತಿಳಿಯಿರಿ',
@@ -310,7 +310,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     startAssessment: 'ನಾಯಕತ್ವ ಸ್ವಯಂ-ಮೌಲ್ಯಮಾಪನ ಪ್ರಾರಂಭಿಸಿ (105 ಪ್ರಶ್ನೆಗಳು)',
   },
   te: {
-    brandTitle: 'లెర్నోవా సర్వీసెస్ (Learnova Services)',
+    brandTitle: 'LearnEnlight',
     tagline: 'మనస్తత్వాలు మరియు ఆలోచనలను నేర్చుకోండి & ఆవిష్కరించండి (Learn & Innovate Mindsets & Ideas)',
     navHome: 'హోమ్',
     navAbout: 'మా గురించి',
@@ -323,7 +323,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     listenAudio: 'వాయిస్ వినండి',
     stopAudio: 'ఆడియో ఆపండి',
     playingAudio: 'ఆడియో నడుస్తోంది...',
-    aboutSnippetHeading: 'లెర్నోవా సర్వీసెస్ పరిచయం',
+    aboutSnippetHeading: 'LearnEnlight పరిచయం',
     aboutSnippetText:
       'మేము లెర్నింగ్ & డెవలప్‌మెంట్, లీడర్‌షిప్ డెవలప్‌మెంట్, స్కిల్ డెవలప్‌మెంట్ మరియు ఆర్గనైజేషనల్ డెవలప్‌మెంట్‌లో దశాబ్దానికి పైగా విశేష అనుభవం కలిగిన కార్పొరేట్ హెచ్‌ఆర్ నిపుణులం.',
     readMoreAbout: 'మా ధృవీకరణలు మరియు లక్ష్యాలను చూడండి',

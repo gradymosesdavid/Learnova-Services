@@ -74,26 +74,26 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
   const aboutFaqs = [
     {
       id: 'about-faq-1',
-      question: 'What sets Learnova Services apart from traditional lecture-based training providers?',
+      question: 'What sets LearnEnlight apart from traditional lecture-based training providers?',
       answer:
-        'Learnova Services replaces passive slide presentations with tactile experiential learning. Whether it is hands-on server motherboard assembly or automotive engine torquing, learners physically perform, verify, and reflect upon standard operating procedures, ensuring lasting retention and measurable 3X ROI.',
+        'LearnEnlight replaces passive slide presentations with tactile experiential learning. Whether it is hands-on server motherboard assembly or automotive engine torquing, learners physically perform, verify, and reflect upon standard operating procedures, ensuring lasting retention and measurable 3X ROI.',
     },
     {
       id: 'about-faq-2',
-      question: 'Which international bodies certify Learnova Services behavioural trainers?',
+      question: 'Which international bodies certify LearnEnlight behavioural trainers?',
       answer:
         'Our trainers hold globally prestigious credentials: AoN Hewitt for Learning & Development, British Council for Train the Trainer, University of Cambridge for Teaching Knowledge Test, Middle Earth HR for Certified Life Coach, and TESOL Canada / Ministry of Human Resources Canada.',
     },
     {
       id: 'about-faq-3',
-      question: 'How does Learnova Services adapt its training to diverse multilingual shifts?',
+      question: 'How does LearnEnlight adapt its training to diverse multilingual shifts?',
       answer:
         'We support complete multilingual delivery across 9 major global and regional languages: English, Korean, Japanese, German, Tamil, Hindi, Malayalam, Kannada, and Telugu, complete with native audio narration and cultural nuance tuning.',
     },
   ];
 
   const handleReadPage = () => {
-    const speechText = `About Learnova Services. Learn and Innovate Mindsets and Ideas. 
+    const speechText = `About LearnEnlight. Learn and Innovate Mindsets and Ideas. 
     We are corporate HR professionals with over a decade of experience in Learning and Development, Leadership Development, Competency and Skill Development, and Organizational Development. 
     We are certified Behavioural Trainers, certified by: 
     AoN Learning and Development, 
@@ -101,11 +101,11 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
     University of Cambridge Teaching Knowledge Test, 
     Life Coach from Middle Earth HR, 
     and TESOL Teachers Board of Canada and Ministry of Human Resources Canada.`;
-    speechService.speak(speechText, 'About Learnova Services & Global Certifications', language);
+    speechService.speak(speechText, 'About LearnEnlight & Global Certifications', language);
   };
 
   return (
-    <div id="learnova-about-page" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-[#F8F9FA]">
+    <div id="learnenlight-about-page" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-[#F8F9FA]">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-[#1B4332] via-[#255d46] to-[#1B4332] rounded-3xl text-white p-8 sm:p-12 shadow-xl border border-[#B7E4C7]/30 relative overflow-hidden mb-12">
         <div className="max-w-3xl relative z-10">
@@ -208,7 +208,7 @@ export const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
           <div className="bg-gradient-to-br from-[#1B4332] to-[#255d46] rounded-2xl p-6 text-white shadow-md flex flex-col justify-between border border-[#B7E4C7]/40">
             <div>
               <span className="text-xs font-black uppercase tracking-wider text-[#B7E4C7] block mb-2">
-                Learnova Services Hallmark
+                LearnEnlight Hallmark
               </span>
               <h3 className="text-2xl font-black font-['Outfit'] leading-tight text-[#F8F9FA]">
                 10+ Years of Behavioral Transformation

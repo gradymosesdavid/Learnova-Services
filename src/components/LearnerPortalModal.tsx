@@ -161,7 +161,7 @@ export const LearnerPortalModal: React.FC<LearnerPortalModalProps> = ({
                       </div>
 
                       <div className="mt-4 pt-3 border-t border-[#B7E4C7]/30 flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-[#1B4332]">Learnova Services L&D</span>
+                        <span className="text-[11px] font-bold text-[#1B4332]">LearnEnlight L&D</span>
                         <button
                           onClick={() => handlePrintCert(cert)}
                           className="px-3 py-1.5 rounded-xl bg-[#1B4332] hover:bg-[#143326] text-white text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
